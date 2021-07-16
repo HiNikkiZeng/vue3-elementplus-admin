@@ -16,7 +16,7 @@ module.exports = {
     outputDir,
     assetsDir,
     lintOnSave,
-    productionSourceMap:false,//不输出 map 文件  no output map file
+    productionSourceMap:false,
     devServer: {
         port: port,
         open: true,
