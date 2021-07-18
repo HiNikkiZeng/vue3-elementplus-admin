@@ -1,5 +1,5 @@
 {
-  "name": "v-meow-admin",
+  "name": "v-me-admin",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -27,6 +27,8 @@
     "eslint-plugin-import": "^2.20.2",
     "eslint-plugin-vue": "^7.0.0",
     "sass": "^1.26.5",
-    "sass-loader": "^8.0.2"
+    "sass-loader": "^8.0.2",
+    "style-loader": "^2.0.0",
+    "style-resources-loader": "^1.4.1"
   }
 }
