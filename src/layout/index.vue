@@ -8,10 +8,10 @@
 </template>
 
 <script>
-import { reactive, toRefs, defineComponent } from 'vue';
+import { reactive, toRefs } from 'vue';
 import { AppMain, Sidebar } from './components';
 
-export default defineComponent({
+export default ({
   name: 'Layout',
   components: {
     AppMain,

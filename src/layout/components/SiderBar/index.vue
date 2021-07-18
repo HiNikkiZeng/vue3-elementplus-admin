@@ -3,15 +3,14 @@
       <SidebarLogo :collapse="isCollapse" />
       <el-scrollbar  wrap-class="scrollbar-wrapper">
          <el-menu
-            :collapse="!isCollapse"
-            :unique-opened="false"
             :default-active="activeMenu"
+            :collapse="!isCollapse"
             :background-color="variables.menuBg"
             :text-color="variables.menuText"
-            :active-text-color="menuActiveTextColor"
+            :unique-opened="false"
+            :active-text-color="variables.menuActiveText"
+            :collapse-transition="false"
             mode="vertical"
-            @open="handleOpen"
-            @close="handleClose"
          >
          <SidebarItem/>
 
@@ -22,14 +21,14 @@
 
 <script>
 import {
-  reactive, toRefs, defineComponent, ref, computed,
+  ref, computed,
 } from 'vue';
 import { useRoute } from 'vue-router';
 import variables from '@/styles/variables.scss';
 import SidebarItem from './SidebarItem.vue';
 import SidebarLogo from './SidebarLogo.vue';
 
-export default defineComponent({
+export default ({
   components: {
     SidebarItem,
     SidebarLogo,
@@ -37,9 +36,6 @@ export default defineComponent({
   setup() {
     const isCollapse = ref(true);
     const route = useRoute();
-    const ElMenuMap = reactive({
-
-    });
 
     const activeMenu = computed(() => {
       const { meta, path } = route;
@@ -52,7 +48,6 @@ export default defineComponent({
     });
 
     return {
-      ...toRefs(ElMenuMap),
       isCollapse,
       activeMenu,
       variables,
@@ -86,20 +81,10 @@ export default defineComponent({
     }
   }
 }
-</style>
-
-<style lang="scss" scoped>
 .el-scrollbar {
   height: 100%
 }
-
-.has-logo {
-  .el-scrollbar {
-    height: calc(100% - 50px);
-  }
-}
-
-.el-menu {
+.el-scrollbar__view .el-menu {
   border: none;
   height: 100%;
   width: 100% !important;
