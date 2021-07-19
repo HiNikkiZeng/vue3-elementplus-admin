@@ -1,4 +1,5 @@
 const { resolve } = require('path');
+const path = require('path');
 const {
   publicPath,
   outputDir,
@@ -8,7 +9,7 @@ const {
   port,
 } = require('./src/config/config');
 
-process.env.VUE_APP_TITLE = title || 'v-meow-admin';
+process.env.VUE_APP_TITLE = title || 'v-me-admin';
 
 module.exports = {
   publicPath,
@@ -24,6 +25,14 @@ module.exports = {
       errors: true,
     },
   },
+  css: {
+    loaderOptions: {
+      scss: {
+        prependData: `@import "@/styles/variables.scss";`+ `@import "@/styles/mixin.scss";`,
+      },
+    }
+  },
+
   configureWebpack: () => ({
     resolve: {
       alias: {
