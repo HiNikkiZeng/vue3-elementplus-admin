@@ -25,16 +25,12 @@ module.exports = {
       errors: true,
     },
   },
-  pluginOptions: {
-  //   //adding this loader can be direct to use variables without import
-  //   // 导入css 预处理器的一些公共的样式文件变量,避免在每个样式文件中手动的@import导入，然后在各个css 文件中直接使用变量
-    'style-resources-loader': {
-      preProcessor: 'scss',
-      patterns: [
-        path.resolve(__dirname, 'src/styles/variables.scss'),
-        path.resolve(__dirname, 'src/styles/mixin.scss'),
-      ],
-    },
+  css: {
+    loaderOptions: {
+      scss: {
+        prependData: `@import "@/styles/variables.scss";`+ `@import "@/styles/mixin.scss";`,
+      },
+    }
   },
 
   configureWebpack: () => ({
