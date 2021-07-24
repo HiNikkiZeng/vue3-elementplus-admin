@@ -13,5 +13,18 @@ module.exports = {
   rules: {
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
+    'no-plusplus': ['off', {
+      allowForLoopAfterthoughts: true, // 可以使用一元运算符
+    }],
+    'no-param-reassign': [
+      'error',
+      {
+        props: true,
+        ignorePropertyModificationsFor: [
+          'modules', // for vuex modules
+        ],
+      },
+    ],
   },
+
 };
