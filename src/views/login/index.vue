@@ -33,9 +33,8 @@
         </span>
         <el-input
           ref="passwordRef"
-          :key="passwordType"
           v-model="loginForm.password"
-          :type="passwordType"
+          type="password"
           placeholder="密码"
           name="password"
           tabindex="2"
@@ -79,6 +78,10 @@
 
 <script >
 import { reactive, toRefs, ref } from 'vue';
+import { $apiLogin } from '@/api/user';
+import { errorMessage } from '@/utils/ElMessage';
+import { setToken } from '@/utils/auth';
+import router from '@/router';
 
 const validateUsername = (rule, value, callback) => {
   if (!value.length) {
@@ -140,6 +143,30 @@ export default {
             }
           }, 1000);
         }
+      },
+      handleLogin() {
+        const { username, password } = formMap.loginForm;
+        loginFormRef.value.validate(async (valid) => {
+          if (valid) {
+            formMap.loading = true;
+            $apiLogin({
+              username,
+              password,
+            }).then((res) => {
+              if (res && res.code === 20000) {
+                setToken({ token: res.token });
+                router.push({ path: '/' });
+              } else {
+                errorMessage(res.message);
+              }
+              formMap.loading = false;
+            });
+          } else {
+            return false;
+          }
+
+          return false;
+        });
       },
 
     });

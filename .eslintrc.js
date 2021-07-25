@@ -20,8 +20,9 @@ module.exports = {
       'error',
       {
         props: true,
-        ignorePropertyModificationsFor: [
+        ignorePropertyModificationsFor: [ // 可修改函数的入参
           'modules', // for vuex modules
+          'config',
         ],
       },
     ],

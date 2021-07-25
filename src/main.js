@@ -6,6 +6,8 @@ import '@/styles/index.scss';
 import installAllPlugins from './plugins';
 import './assets/icons';
 import allComponent from './components';
+import '@/permission';
+import '../mock';
 
 const app = createApp(App);
 installAllPlugins(app);
