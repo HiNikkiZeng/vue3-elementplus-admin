@@ -1,2 +1,2 @@
-export { default as AppMain } from './AppMain';
-export { default as Sidebar } from './SiderBar';
+export { default as Sidebar } from './Sidebar/index.vue';
+export { default as AppMain } from './AppMain.vue';

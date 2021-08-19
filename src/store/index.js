@@ -9,8 +9,9 @@ const isModules = modulesFiles.keys().reduce((modules, modulePath) => {
   return modules;
 }, {});
 
-export default createStore({
+const Store = createStore({
   modules: {
-    isModules,
+    ...isModules,
   },
 });
+export default Store;

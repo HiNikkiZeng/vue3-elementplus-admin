@@ -1,5 +1,5 @@
-const { resolve } = require('path');
 const path = require('path');
+
 const {
   publicPath,
   outputDir,
@@ -8,6 +8,8 @@ const {
   title,
   port,
 } = require('./src/config/config');
+
+const resolve = (dir) => path.join(__dirname, dir);
 
 process.env.VUE_APP_TITLE = title || 'v-me-admin';
 
@@ -28,9 +30,9 @@ module.exports = {
   css: {
     loaderOptions: {
       scss: {
-        prependData: `@import "@/styles/variables.scss";`+ `@import "@/styles/mixin.scss";`,
+        prependData: `${'@import "@/styles/variables.scss";'}${'@import "@/styles/mixin.scss";'}`,
       },
-    }
+    },
   },
 
   configureWebpack: () => ({
@@ -40,5 +42,21 @@ module.exports = {
       },
     },
   }),
+  chainWebpack: (config) => {
+    const iconPath = resolve('src/assets/icons/svg');
+    config.module
+      .rule('svg')
+      .exclude.add(iconPath)
+      .end();
+    config.module
+      .rule('icons')
+      .test(/\.svg$/)
+      .include.add(iconPath)
+      .end()
+      .use('svg-sprite-loader')
+      .loader('svg-sprite-loader')
+      .options({ extract: false })
+      .end();
+  },
 
 };

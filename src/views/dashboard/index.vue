@@ -8,7 +8,7 @@
 import { reactive, toRefs } from 'vue';
 
 export default {
-  name: 'App',
+  name: 'Dashboard',
   setup() {
     const dataMap = reactive({
 

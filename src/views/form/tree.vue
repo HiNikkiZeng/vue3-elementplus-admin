@@ -1,18 +1,14 @@
 <template>
-  <section class="app-main">
-    <router-view v-slot="{Component}">
-      <transition name="fade-transform" mode="out-in">
-        <component :is="Component" />
-      </transition>
-    </router-view>
-  </section>
+  <div class="container">
+      <h1>tree</h1>
+  </div>
 </template>
 
 <script >
 import { reactive, toRefs } from 'vue';
 
 export default {
-  name: 'AppMain',
+  name: 'App',
   setup() {
     const dataMap = reactive({
 
@@ -25,5 +21,4 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
 </style>
