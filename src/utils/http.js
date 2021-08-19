@@ -24,11 +24,10 @@ service.interceptors.request.use(
 service.interceptors.response.use(
   (response) => {
     const res = response.data;
-    if (res.code !== 20000) {
+    if (res && res.code !== 20000) {
       errorMessage(res.message);
-    } else {
-      return res;
     }
+    return res;
   },
   (error) => {
     errorMessage(error.message);

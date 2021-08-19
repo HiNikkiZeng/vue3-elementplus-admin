@@ -1,21 +1,22 @@
 <template>
   <div class="app-wrapper">
-    <Sidebar class="sidebar-container" />
-    <div class="main-container">
-       <AppMain />
-    </div>
+    <Sidebar/>
+    <section class="main-container">
+        <AppMain/>
+    </section>
+
   </div>
 </template>
 
-<script>
+<script >
 import { reactive, toRefs } from 'vue';
-import { AppMain, Sidebar } from './components';
+import { Sidebar, AppMain } from './components';
 
-export default ({
+export default {
   name: 'Layout',
   components: {
-    AppMain,
     Sidebar,
+    AppMain,
   },
   setup() {
     const dataMap = reactive({
@@ -25,31 +26,15 @@ export default ({
       ...toRefs(dataMap),
     };
   },
-});
+};
 </script>
 
 <style lang="scss" scoped>
-  // @import "~@/styles/variables.scss";
-  // @import "~@/styles/mixin.scss";
-
- .app-wrapper {
+.app-wrapper{
   @include clearfix;
-  position: relative;
-  height: 100%;
   width: 100%;
-}
-
-.sidebar-container {
-  transition: width 0.28s;
-  width: $sideBarWidth !important;
   height: 100%;
-  position: fixed;
-  font-size: 0px;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 1001;
-  overflow: hidden;
+  // position: relative;
 }
 
 .main-container {

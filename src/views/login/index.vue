@@ -114,7 +114,7 @@ export default {
     const codeRef = ref();
 
     const formMap = reactive({
-      codeText: '发生验证码',
+      codeText: '发送验证码',
       loading: false,
       loginForm: {
         username: '',
@@ -154,7 +154,7 @@ export default {
               password,
             }).then((res) => {
               if (res && res.code === 20000) {
-                setToken({ token: res.token });
+                setToken({ token: res.token, username });
                 router.push({ path: '/' });
               } else {
                 errorMessage(res.message);
@@ -185,7 +185,6 @@ export default {
 /* 修复input 背景不协调 和光标变色 */
 /* Detail see https://github.com/PanJiaChen/vue-element-admin/pull/927 */
 
-$bg:#283443;
 $light_gray:#fff;
 $cursor: #fff;
 
@@ -212,7 +211,7 @@ $cursor: #fff;
       caret-color: $cursor;
 
       &:-webkit-autofill {
-        box-shadow: 0 0 0px 1000px $bg inset !important;
+        box-shadow: 0 0 0px 1000px #4B535A inset !important;
         -webkit-text-fill-color: $cursor !important;
       }
     }
@@ -229,14 +228,13 @@ $cursor: #fff;
 
 <style lang="scss" scoped>
 
-$bg:#2d3a4b;
 $dark_gray:#889aa4;
 $light_gray:#eee;
 
 .login-container {
   min-height: 100%;
   width: 100%;
-  background-color: $bg;
+  background-color: $menuBg;
   overflow: hidden;
 
   .login-form {
@@ -294,5 +292,13 @@ $light_gray:#eee;
     }
   }
 
+}
+</style>
+
+<style scoped>
+ .el-button--primary {
+    color: #FFF;
+    background-color: #42b983;
+    border-color: #42b983;
 }
 </style>
